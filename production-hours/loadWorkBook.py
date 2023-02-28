@@ -11,6 +11,11 @@ class WorkBook:
             self.ws2 = self.wb['Pipeline Hours'] 
         except:
            self.ws2 = self.wb.create_sheet("Pipeline Hours")
+        
+        try:
+            self.ws3 = self.wb["Total Per Job Type"] 
+        except:
+           self.ws3 = self.wb.create_sheet("Total Per Job Type")
     
     def prepWorkBook(self, cellRange=['A1', 'B1', 'C1', 'D1', 'E1', 'F1', 'G1'], 
                                 machinesList=['TOTAL', 'MACHINE_1', 'MACHINE_2', 'MACHINE_3', 'MACHINE_4', 'MACHINE_5', 'MACHINE_6']):
@@ -60,3 +65,8 @@ class WorkBook:
                 
             rowN += 2
             colN = 1
+    
+       def _totalPerJobType(self, data):
+            for i, r in data.iteritems():
+                self.ws3.append([i, r])
+            self.wb.save(self.path) 
