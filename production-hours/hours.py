@@ -86,6 +86,7 @@ class Hours(WorkBook, DataController):
 
         total_hours = self._calcTotalHours()
         self._machineHoursBreakdown(total_hours)
+        self._totalPerJobType(self._groupByJobType())
 
     def _hours_Col_Itter(self):
         for col in self.ws1['L9:L300']:
