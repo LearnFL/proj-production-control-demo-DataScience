@@ -28,4 +28,7 @@ class DataController:
             curMonth[machine] += curHours
         else:
             curMonth[machine] = curHours
-       
+            
+    def _groupByJobType(self):
+        dfGroupped = self.df.groupby('ORDER')['QUANTITY'].sum()
+        return dfGroupped
