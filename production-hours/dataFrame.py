@@ -31,4 +31,5 @@ class DataController:
             
     def _groupByJobType(self):
         dfGroupped = self.df.groupby('ORDER')['QUANTITY'].sum()
+        dfGroupped = dfGroupped.to_frame().reset_index()
         return dfGroupped
