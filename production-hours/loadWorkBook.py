@@ -66,7 +66,11 @@ class WorkBook:
             rowN += 2
             colN = 1
     
-       def _totalPerJobType(self, data):
-            for i, r in data.iteritems():
-                self.ws3.append([i, r])
-            self.wb.save(self.path) 
+    def _totalPerJobType(self, data):
+        self.ws3.cell(row=1, column=1).value = 'PRODUCT'
+        self.ws3.cell(row=1, column=2).value = 'ORDERED'
+        for index, row in data.iterrows():
+            print(index)
+            self.ws3.cell(row=index+2, column=1).value = row['ORDER']
+            self.ws3.cell(row=index+2, column=2).value = row['QUANTITY']
+        self.wb.save(self.path)  
