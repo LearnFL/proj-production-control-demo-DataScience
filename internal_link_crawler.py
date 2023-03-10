@@ -96,5 +96,7 @@ filterList = [
         ..........
 ]
 
+compile = re.compile(r'^(/SOMETHING GOES HERE/)[A-Za-z0-9._+/]+')
+
 parser = ArticleCrawler(domain='SOME_DOMAIN', delay=5)        
 parser.parse(link='', selector='a')
