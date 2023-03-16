@@ -9,3 +9,4 @@
 |internal_link_crawler.py|Looks for article titles of interest.|
 |schedule.py|Small Dash project to help visualize production jobs and schedule.|
 |production-hours|Used to calculate labor and machine hours on a production schedule. The software reads Excel, grabs part numbers, order size, due dates, then performs calculations and writes data back into excel. The software calculates total time for all jobs, time per machine, per operation, per machine & per month, takes into account minimum time needed for a job/machine, regardless order size. `LICENSE: Dennis Rotnov.`|
+|article_reader.py| Reads all PDF articles in a folder, looks for the data of interest, if found returns article path, number of pages, number of the page where information was found, text and also saves results in a text file.|
