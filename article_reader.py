@@ -87,7 +87,7 @@ def search_pdf(*, worker_class, input_class, data_dir, pattern, GrabExtra):
 
 main_subject = 'mobility'
 key_words = ['hydrogen', 'AlOH', 'H', 'Ca', 'Mg', 'Li', 'alkali', 'metals', 'charge','compensator', 'hole', 'electron', 'OH', 'travel', 'move', 
-             'sweep', 'sweeping', 'axis', 'current', 'ion', 'covalent', 'valent', 'and', 'Al'
+             'sweep', 'sweeping', 'axis', 'current', 'ion', 'covalent', 'valent', 'Al'
             ]
 
 pattern = r".*"+f"\\b{main_subject}\\b"+"\s*\w*\s*("+'|'.join([f'\\b{i}\\b' for i in key_words])+").*"
