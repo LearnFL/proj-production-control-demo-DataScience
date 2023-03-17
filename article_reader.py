@@ -4,7 +4,7 @@ import re
 import os
 from threading import Thread, Lock
 
-dir_path = Path(r"PATH TO A FOLDER")
+dir_path = Path(r"YOUR FOLDER PATH")
 
 
 class InputClass:
@@ -29,11 +29,12 @@ class InputClass:
 
 
 class PdfSearch:
-    def __init__(self, input, pattern):
+    def __init__(self, input, pattern, GrabExtra):
         self.input = input
         self.report = []
         self.lock = Lock()
         self.pattern = pattern
+        self.GrabExtra = GrabExtra
 
 
     def dump_txt(self):
@@ -52,21 +53,24 @@ class PdfSearch:
 
                 else:
                     try:
-                        print(f'File Name: {file_name}, Page: {idx} out of {pagesN}, {page.extract_text()[i.start()-100 : i.end()+100]}')
+                        print(f'File Name: {file_name}, Page: {idx} out of {pagesN}, {page.extract_text()[i.start()-50 : i.end()+50]}')
                     except:
                         print(f'File Name: {file_name}, Page: {idx} out of {pagesN}, {i.group()}')
+                        self.report.append(f'File Name: {file_name}, Page: {idx} out of {pagesN}, {i.group()}')
+                    else:
+                        self.report.append(f'File Name: {file_name}, Page: {idx} out of {pagesN}, {page.extract_text()[i.start()-50 : i.end()+50]}')
 
         self.dump_txt()
 
     def filter(self):
         pattern = re.compile(self.pattern, re.IGNORECASE)
-        self.present_data(pattern, GrabExtra=False)
+        self.present_data(pattern, GrabExtra=self.GrabExtra)
 
     @classmethod
-    def build_workers(cls, input_class, data_dir, pattern):
+    def build_workers(cls, input_class, data_dir, pattern, GrabExtra=False):
         workers = []
         for input_data in input_class.generate_inputs(data_dir):
-            workers.append(cls(input_data, pattern))
+            workers.append(cls(input_data, pattern, GrabExtra))
         return workers
 
 
@@ -76,17 +80,16 @@ def execute(workers):
     for thread in threads: thread.join()
 
 
-def search_pdf(*, worker_class, input_class, data_dir, pattern):
-    workers = worker_class.build_workers(input_class,data_dir, pattern)
+def search_pdf(*, worker_class, input_class, data_dir, pattern, GrabExtra):
+    workers = worker_class.build_workers(input_class,data_dir, pattern, GrabExtra)
     return execute(workers)
 
 
 main_subject = 'mobility'
-key_words = [
-    'hydrogen', 'AlOH', 'H', 'Ca', 'Mg', 'Li', 'alkali', 'metals', 'charge','compensator', 'hole', 'electron', 'OH', 'travel', 'move', 'sweep', 
-    'sweeping', 'axis', 'current', 'ion', 'covalent', 'valent', 'and', 'Al'
-    ]
+key_words = ['hydrogen', 'AlOH', 'H', 'Ca', 'Mg', 'Li', 'alkali', 'metals', 'charge','compensator', 'hole', 'electron', 'OH', 'travel', 'move', 
+             'sweep', 'sweeping', 'axis', 'current', 'ion', 'covalent', 'valent', 'and', 'Al'
+            ]
 
 pattern = r".*"+f"\\b{main_subject}\\b"+"\s*\w*\s*("+'|'.join([f'\\b{i}\\b' for i in key_words])+").*"
 
-search_pdf(worker_class=PdfSearch, input_class=InputClass, data_dir=dir_path, pattern=pattern)
+search_pdf(worker_class=PdfSearch, input_class=InputClass, data_dir=dir_path, pattern=pattern, GrabExtra=True)
