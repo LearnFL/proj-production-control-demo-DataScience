@@ -15,7 +15,16 @@ def frameCheck(df, *args):
     else:
         print('DataFrame is not empty\n')
 
-# Run Plan Dictionary
+''' 
+Either use dictionary or YAML
+Possibly YAML is more efficient due to the fact that python does need to store in memory potentially large dictionary
+'''
+
+def run_plan_loader():
+    with open(r"SOME_PATH\run_plan.yaml", 'r') as file:
+        run_plan = load(file, Loader=FullLoader)
+        return run_plan
+    
 run_plan = {
         
         'PRODUCT_1': 
