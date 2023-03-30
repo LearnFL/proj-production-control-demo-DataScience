@@ -11,3 +11,4 @@ Pairplots (sns.pairplot) may consume alot of resources and time when used with <
 |loader.py|Loads, reads, performs initial cleaning of excel files|
 |plotting.py|Functions for custom plotting|
 |redflag.py|Function that handles red flag logging|
+|run_plan.yaml|Contains run plan temperature that will be used to analyse data|
