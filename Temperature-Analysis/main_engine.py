@@ -15,7 +15,7 @@ from time import time
 
 from error import RedFlagDictKeyNotFound, RunTypeError, CodeError
 from loader import df_builder
-from helper import pathCheck, frameCheck, run_plan
+from helper import pathCheck, frameCheck, run_plan_loader
 from plotting import Plotter
 from redflag import redFlagLogger
 
@@ -137,7 +137,7 @@ def engine(file_path=None, start_date=None, end_date=None, step=None, redFlagVal
 
     df = df.astype({'DateTime': 'datetime64[ns]', 'Diss': 'float64','Top':'float64','TD':'float64'})
 
-    redFlag = run_plan.get(run_type.lower(), RedFlagDictKeyNotFound(message="Cannot retreave run plan from Red Flag Dictionary, make sure you entered correct run plan."))
+    redFlag = run_plan_loader().get(run_type.lower(), RedFlagDictKeyNotFound(message="Cannot retreave run plan from Red Flag Dictionary, make sure you entered correct run plan."))
 
     # Red Flag settings
     message = "The run has been found, but values are not retriavable. Failed reading td_max"
@@ -359,7 +359,7 @@ def engine(file_path=None, start_date=None, end_date=None, step=None, redFlagVal
 
     frameCheck(df, 'Lost data after writing regressions')
     
-    if (i := run_plan[run_type.lower().strip()]) is None:
+    if (i := run_plan_loader()[run_type.lower().strip()]) is None:
         raise RunTypeError
     else:
         try:
