@@ -24,7 +24,7 @@ def run_plan_loader():
     with open(r"SOME_PATH\run_plan.yaml", 'r') as file:
         run_plan = load(file, Loader=FullLoader)
         return run_plan
-    
+'''    
 run_plan = {
         
         'PRODUCT_1': 
@@ -41,3 +41,4 @@ run_plan = {
                 "top" : [0, 0, 0, 0, 0]
             }
     }
+'''
