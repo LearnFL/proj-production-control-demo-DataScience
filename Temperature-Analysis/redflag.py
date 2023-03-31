@@ -18,6 +18,7 @@ def redFlagLogger(*, ramp, tempDict, dataFrame, file_path):
                     except Exception as e:
                         error_set.add(str(e))
                         continue
+            del r
             index_for_period += 1        
     print(f'List of Exceptions:  {error_set}')    
     print(f'List of detected Red Flag: {sorted(red_flag_set, key=(lambda x: x[0:4]))}')          
