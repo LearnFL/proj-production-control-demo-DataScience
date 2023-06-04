@@ -6,7 +6,7 @@ How to use:
     -   Update start/end date.
     -   Update step (step will skip rows while reading files).
     -   Update redFlagValue, it sets temperature diviation level for detecting abnormal/sudden temperature changes.
-    -   Update run type [swept, statek, wp, lpof, saw, systron.......].
+    -   Update run type 
     -   Update collumns (which collumns to read).
     -   Update parquet_name (save dataframe as..).
 Recommendations:
