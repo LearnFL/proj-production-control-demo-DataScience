@@ -11,19 +11,19 @@ This repository contains a Python-based software tool used to calculate labor an
 - If the minimum time required is more than the total time per order per operation, the minimum time is used in calculations.
 - In addition to the above, the software breaks down machine time by machine type per month.
 
-### FILES
-#### jobCatalog.py
+## FILES
+- jobCatalog.py
 Contains part numbers with minimum hours and multipliers per part.
 
-#### loadWorkBook.py
+- loadWorkBook.py
 Handles loading of Excel file and writes data.
 
-#### hours.py
+- hours.py
 Performs calculations
 
-#### dataFRame.py
+- dataFRame.py
 Handles Pandas DataFrame
 
-#### main.py
+- main.py
 Initializes work.
 
