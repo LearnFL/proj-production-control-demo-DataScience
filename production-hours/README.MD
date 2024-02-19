@@ -1,11 +1,15 @@
-# HOURS CALCULATER FOR A PRDUCTION SCHEDULE
+# Production Schedule Calculator
 
-### DATA
-All proprietary data has been removed, data entered in jobCatalog.py is intended to simulate real project.
+This repository contains a Python-based software tool used to calculate labor and machine hours for production scheduling. The software is designed to read, process and write back data to Excel, providing useful calculations for total time per job, time per machine, and per operation. 
 
-### DESCRIPTION
-Used to calculate labor and machine hours on a production schedule. 
-The software uses pandas module to read Excel and grab data like part numbers, order size, due dates, then performs calculations and writes data back into excel using openpyxl. Calculations include total time for all jobs, time per machine, per operation, also it takes into account minimum time needed for a job/machine, regardless the order size. If minimum time required is more than total time per order per operation, minimum time will be used for calculations. In addition to all listed above the software breaks machine time down by machine type and month.
+## Features
+
+- The software uses the `pandas` module to read from Excel and grab data such as part numbers, order size, and due dates.
+- It performs various calculations and writes the data back to Excel using `openpyxl`.
+- Calculations include total time for jobs, time per machine, per operation.
+- The software also takes into account the minimum time needed for a job/machine, regardless of order size.
+- If the minimum time required is more than the total time per order per operation, the minimum time is used in calculations.
+- In addition to the above, the software breaks down machine time by machine type per month.
 
 ### FILES
 #### jobCatalog.py
